@@ -1,0 +1,118 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "colorscope-cli"
+version = "1.0.0"
+description = "🎨 ColorScope-CLI - Lightweight Terminal Color Contrast & Accessibility Analysis Engine | 轻量级终端颜色对比度检查与可访问性分析引擎"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "ColorScope Team", email = "colorscope@example.com"}
+]
+keywords = [
+    "accessibility",
+    "color",
+    "contrast",
+    "wcag",
+    "cli",
+    "terminal",
+    "color-blindness",
+    "a11y",
+    "design-tools",
+    "developer-tools",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Designers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Terminals",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+dependencies = [
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.0.0",
+    "mypy>=1.0.0",
+    "flake8>=6.0.0",
+]
+
+[project.scripts]
+colorscope = "colorscope.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/colorscope-cli"
+Documentation = "https://github.com/yourusername/colorscope-cli#readme"
+Repository = "https://github.com/yourusername/colorscope-cli"
+Issues = "https://github.com/yourusername/colorscope-cli/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["colorscope*"]
+
+[tool.setuptools.package-data]
+colorscope = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=colorscope --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["colorscope"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
